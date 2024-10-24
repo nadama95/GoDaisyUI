@@ -26,14 +26,13 @@ func (d StatsDirection) String() string {
 type StatParams struct {
 	Title       string
 	Value       string
-	Class       string
 	Description string
 	Figure      template.HTML
 	Actions     []components.Component
 }
 
 func Stats(stats []StatParams, direction StatsDirection) components.Component {
-	cmp := components.NewComponent("div").AddClass("stats shadow").AddClass(fmt.Sprintf("stats-%s", direction))
+	cmp := components.NewComponent("div").AddClass("stats").AddClass(fmt.Sprintf("stats-%s", direction))
 
 	for _, s := range stats {
 		cmp = cmp.AddChild(Stat(s))
@@ -43,7 +42,7 @@ func Stats(stats []StatParams, direction StatsDirection) components.Component {
 }
 
 func Stat(s StatParams) components.Component {
-	cmp := components.NewComponent("div").AddClass("stat").AddClass(s.Class)
+	cmp := components.NewComponent("div").AddClass("stat")
 
 	if s.Title != "" {
 		cmp = cmp.AddChild(
