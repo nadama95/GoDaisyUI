@@ -1,4 +1,4 @@
-package main
+package godaisyui
 
 type Size int
 

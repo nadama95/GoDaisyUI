@@ -1,4 +1,4 @@
-package main
+package godaisyui
 
 import (
 	"github.com/nadama95/gotemplates/components"
