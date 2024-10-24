@@ -6,6 +6,7 @@ import (
 
 type CardParams struct {
 	BodyClass    string
+	Body         []components.Component
 	Title        string
 	TitleClass   string
 	Actions      []components.Component
@@ -29,6 +30,12 @@ func Card(p CardParams) components.Component {
 		body = body.AddChild(
 			components.NewComponent("h2").OverrideClasses("card-title").AddClass(p.TitleClass).SetText(p.Title),
 		)
+	}
+
+	if len(p.Body) > 0 {
+		for _, i := range p.Body {
+			body = body.AddChild(i)
+		}
 	}
 
 	if len(p.Actions) > 0 {
