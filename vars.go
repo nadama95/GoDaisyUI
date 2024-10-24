@@ -1,5 +1,21 @@
 package godaisyui
 
+type Direction int
+
+const (
+	Horizontal Direction = iota
+	Vertical
+)
+
+var directionName = map[Direction]string{
+	Horizontal: "horizontal",
+	Vertical:   "vertical",
+}
+
+func (d Direction) String() string {
+	return directionName[d]
+}
+
 type Size int
 
 const (

@@ -7,22 +7,6 @@ import (
 	"github.com/nadama95/gotemplates/components"
 )
 
-type StatsDirection int
-
-const (
-	Horizontal StatsDirection = iota
-	Vertical
-)
-
-var directionName = map[StatsDirection]string{
-	Horizontal: "horizontal",
-	Vertical:   "vertical",
-}
-
-func (d StatsDirection) String() string {
-	return directionName[d]
-}
-
 type StatParams struct {
 	Title       string
 	Value       string
@@ -32,7 +16,7 @@ type StatParams struct {
 	Actions     []components.Component
 }
 
-func Stats(stats []StatParams, direction StatsDirection) components.Component {
+func Stats(stats []StatParams, direction Direction) components.Component {
 	cmp := components.NewComponent("div").AddClass("stats").AddClass(fmt.Sprintf("stats-%s", direction))
 
 	for _, s := range stats {
