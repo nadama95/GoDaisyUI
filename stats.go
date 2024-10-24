@@ -26,6 +26,7 @@ func (d StatsDirection) String() string {
 type StatParams struct {
 	Title       string
 	Value       string
+	Classes     string
 	Description string
 	Figure      template.HTML
 	Actions     []components.Component
@@ -42,7 +43,7 @@ func Stats(stats []StatParams, direction StatsDirection) components.Component {
 }
 
 func Stat(s StatParams) components.Component {
-	cmp := components.NewComponent("div").AddClass("stat")
+	cmp := components.NewComponent("div").AddClass("stat").AddClass(s.Classes)
 
 	if s.Title != "" {
 		cmp = cmp.AddChild(
