@@ -7,31 +7,32 @@ import (
 	"github.com/nadama95/gotemplates/components"
 )
 
-type Direction int
+type StatsDirection int
 
 const (
-	Horizontal Direction = iota
+	Horizontal StatsDirection = iota
 	Vertical
 )
 
-var directionName = map[Direction]string{
+var directionName = map[StatsDirection]string{
 	Horizontal: "horizontal",
 	Vertical:   "vertical",
 }
 
-func (d Direction) String() string {
+func (d StatsDirection) String() string {
 	return directionName[d]
 }
 
 type StatParams struct {
 	Title       string
 	Value       string
+	Class       string
 	Description string
 	Figure      template.HTML
 	Actions     []components.Component
 }
 
-func Stats(stats []StatParams, direction Direction) components.Component {
+func Stats(stats []StatParams, direction StatsDirection) components.Component {
 	cmp := components.NewComponent("div").AddClass("stats shadow").AddClass(fmt.Sprintf("stats-%s", direction))
 
 	for _, s := range stats {
@@ -42,7 +43,7 @@ func Stats(stats []StatParams, direction Direction) components.Component {
 }
 
 func Stat(s StatParams) components.Component {
-	cmp := components.NewComponent("div").AddClass("stat")
+	cmp := components.NewComponent("div").AddClass("stat").AddClass(s.Class)
 
 	if s.Title != "" {
 		cmp = cmp.AddChild(

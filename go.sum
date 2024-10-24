@@ -2,3 +2,5 @@ github.com/nadama95/gotemplates v0.0.0-20241024103923-76e9cf116605 h1:nWPzrDDcam
 github.com/nadama95/gotemplates v0.0.0-20241024103923-76e9cf116605/go.mod h1:El8CV2+bN1NAzYrr4d3DpRVq5By9SMj5z5BQsHS8LMQ=
 github.com/nadama95/gotemplates v0.0.0-20241024122531-e505a1ab0520 h1:zga6jUdxZ7tKYwh9UUnbZXST7Rz3q8+cDadwR9vxFWA=
 github.com/nadama95/gotemplates v0.0.0-20241024122531-e505a1ab0520/go.mod h1:El8CV2+bN1NAzYrr4d3DpRVq5By9SMj5z5BQsHS8LMQ=
+github.com/nadama95/gotemplates v0.0.1 h1:OndFS3B8s+eCIQY5JCm+ths3LC3C8tBbS4fXy/QBNQM=
+github.com/nadama95/gotemplates v0.0.1/go.mod h1:El8CV2+bN1NAzYrr4d3DpRVq5By9SMj5z5BQsHS8LMQ=
