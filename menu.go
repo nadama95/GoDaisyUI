@@ -28,31 +28,38 @@ func Menu(p MenuParams) components.Component {
 
 	cmp = cmp.AddClass(p.Classes)
 
-	if p.Title != "" {
-		if p.TitleAsParent {
-			cmp = cmp.AddChild(
-				components.NewComponent("li").AddChild(
-					components.NewComponent("h2").AddClass("menu-title").SetText(p.Title),
-				),
-			)
-		} else {
-			cmp = cmp.AddChild(
-				components.NewComponent("li").AddClass("menu-title").SetText(p.Title),
+	submenu := components.NewComponent("li")
+	if p.TitleAsParent {
+		if p.Title != "" {
+			submenu.AddChild(
+				createMenuTitle(p.Title, p.TitleAsParent),
 			)
 		}
-	}
-
-	if p.TitleAsParent {
-		submenu := components.NewComponent("ul")
 
 		cmp = cmp.AddChild(
 			addMenuItems(submenu, p.ListItems),
 		)
 	} else {
-		cmp = addMenuItems(cmp, p.ListItems)
+		if p.Title != "" {
+			cmp.AddChild(createMenuTitle(p.Title, p.TitleAsParent))
+		}
+		cmp = cmp.AddChild(
+			addMenuItems(submenu, p.ListItems),
+		)
 	}
 
 	return cmp
+}
+
+func createMenuTitle(t string, asParent bool) components.Component {
+	var c components.Component
+	if asParent {
+		c = components.NewComponent("a")
+	} else {
+		c = components.NewComponent("li")
+	}
+
+	return c.AddClass("menu-title").SetText(t)
 }
 
 func addMenuItems(m components.Component, is []components.Component) components.Component {
