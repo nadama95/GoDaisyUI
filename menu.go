@@ -7,6 +7,7 @@ import (
 )
 
 type MenuParams struct {
+	AsSubMenu     bool
 	Classes       string
 	ListItems     []components.Component
 	Title         string
@@ -16,9 +17,16 @@ type MenuParams struct {
 }
 
 func Menu(p MenuParams) components.Component {
-	cmp := components.NewComponent("ul").AddClass(
-		fmt.Sprintf("menu menu-%s menu-%s", p.Size, p.Direction),
-	).AddClass(p.Classes)
+
+	cmp := components.NewComponent("ul")
+
+	if p.AsSubMenu {
+		cmp = cmp.AddClass(
+			fmt.Sprintf("menu menu-%s menu-%s", p.Size, p.Direction),
+		)
+	}
+
+	cmp = cmp.AddClass(p.Classes)
 
 	if p.Title != "" {
 		if p.TitleAsParent {
