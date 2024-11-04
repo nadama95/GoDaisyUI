@@ -16,24 +16,24 @@ type TableParams struct {
 
 func Table(p TableParams) components.Component {
 	div := components.NewDiv()
-	div.AddClass("overflow-x-auto")
+	div = div.AddClass("overflow-x-auto")
 
 	table := components.NewComponent("table").AddClass(fmt.Sprintf("table table-%s", p.Size))
 
 	if p.Striped {
-		table.AddClass("table-zebra")
+		table = table.AddClass("table-zebra")
 	}
 
 	thead := components.NewComponent("thead")
 
 	for _, r := range p.TableHeadRows {
-		thead.AddChild(r)
+		thead = thead.AddChild(r)
 	}
 
 	tbody := components.NewComponent("tbody")
 
 	for _, r := range p.TableBodyRows {
-		tbody.AddChild(r)
+		tbody = tbody.AddChild(r)
 	}
 
 	table.AddChild(thead).AddChild(tbody)
