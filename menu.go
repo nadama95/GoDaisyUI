@@ -34,9 +34,7 @@ func Menu(p MenuParams) components.Component {
 		}
 	}
 
-	fmt.Println(p.ListItems)
-
-	return cmp.AddChild(addMenuItems(cmp, p.ListItems))
+	return addMenuItems(cmp, p.ListItems)
 }
 
 type SubMenuParams struct {
