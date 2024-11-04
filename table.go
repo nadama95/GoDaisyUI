@@ -14,7 +14,7 @@ type TableParams struct {
 	Size
 }
 
-func (p TableParams) Table() components.Component {
+func Table(p TableParams) components.Component {
 	div := components.NewDiv()
 	div.AddClass("overflow-x-auto")
 
