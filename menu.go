@@ -20,7 +20,7 @@ func Menu(p MenuParams) components.Component {
 
 	cmp := components.NewComponent("ul")
 
-	if p.AsSubMenu {
+	if p.AsSubMenu == false {
 		cmp = cmp.AddClass(
 			fmt.Sprintf("menu menu-%s menu-%s", p.Size, p.Direction),
 		)
@@ -36,8 +36,12 @@ func Menu(p MenuParams) components.Component {
 			)
 		}
 
+		submenuChildren := components.NewComponent("ul")
+
 		cmp = cmp.AddChild(
-			addMenuItems(submenu, p.ListItems),
+			submenu.AddChild(
+				addMenuItems(submenuChildren, p.ListItems),
+			),
 		)
 	} else {
 		if p.Title != "" {
