@@ -38,9 +38,7 @@ func Table(p TableParams) components.Component {
 
 	table.AddChild(thead).AddChild(tbody)
 
-	div.AddChild(
+	return div.AddChild(
 		table,
 	)
-
-	return div
 }
