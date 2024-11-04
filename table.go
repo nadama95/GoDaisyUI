@@ -8,8 +8,8 @@ import (
 
 type TableParams struct {
 	Classes       string
-	TableBodyRows []components.TD
-	TableHeadRows []components.TR
+	TableBodyRows []components.Component
+	TableHeadRows []components.Component
 	Striped       bool
 	Size
 }
