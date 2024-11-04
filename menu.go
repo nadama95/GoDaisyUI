@@ -51,7 +51,9 @@ func SubMenu(p SubMenuParams) components.Component {
 		cmp = cmp.AddChild(createMenuTitle(p.Title, p.TitleAsParent))
 	}
 
-	return cmp.AddChild(addMenuItems(cmp, p.ListItems))
+	menuItems := components.NewComponent("ul")
+
+	return cmp.AddChild(addMenuItems(menuItems, p.ListItems))
 }
 
 func createMenuTitle(t string, asParent bool) components.Component {
