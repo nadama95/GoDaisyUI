@@ -18,47 +18,30 @@ type MenuParams struct {
 
 func Menu(p MenuParams) components.Component {
 
-	cmp := components.NewComponent("ul")
+	cmp := components.NewComponent("ul").AddClass(
+		// Menu Classes
+		fmt.Sprintf("menu menu-%s menu-%s", p.Size, p.Direction),
+	).AddClass(p.Classes)
 
-	if p.AsSubMenu == false {
-		cmp = cmp.AddClass(
-			fmt.Sprintf("menu menu-%s menu-%s", p.Size, p.Direction),
-		)
-	}
+	if p.Title != "" {
+		if p.TitleAsParent {
+			section := components.NewComponent("li")
+			section = section.AddChild(createMenuTitle(p.Title, p.TitleAsParent))
 
-	cmp = cmp.AddClass(p.Classes)
+			return cmp.AddChild(addMenuItems(section, p.ListItems))
 
-	submenu := components.NewComponent("li")
-	if p.TitleAsParent {
-		if p.Title != "" {
-			submenu.AddChild(
-				createMenuTitle(p.Title, p.TitleAsParent),
-			)
+		} else {
+			cmp = cmp.AddChild(createMenuTitle(p.Title, p.TitleAsParent))
+
 		}
-
-		submenuChildren := components.NewComponent("ul")
-
-		cmp = cmp.AddChild(
-			submenu.AddChild(
-				addMenuItems(submenuChildren, p.ListItems),
-			),
-		)
-	} else {
-		if p.Title != "" {
-			cmp.AddChild(createMenuTitle(p.Title, p.TitleAsParent))
-		}
-		cmp = cmp.AddChild(
-			addMenuItems(submenu, p.ListItems),
-		)
 	}
-
-	return cmp
+	return cmp.AddChild(addMenuItems(cmp, p.ListItems))
 }
 
 func createMenuTitle(t string, asParent bool) components.Component {
 	var c components.Component
 	if asParent {
-		c = components.NewComponent("a")
+		c = components.NewComponent("h2")
 	} else {
 		c = components.NewComponent("li")
 	}
