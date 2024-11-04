@@ -7,7 +7,6 @@ import (
 )
 
 type MenuParams struct {
-	AsSubMenu     bool
 	Classes       string
 	ListItems     []components.Component
 	Title         string
@@ -35,6 +34,23 @@ func Menu(p MenuParams) components.Component {
 
 		}
 	}
+	return cmp.AddChild(addMenuItems(cmp, p.ListItems))
+}
+
+type SubMenuParams struct {
+	Classes       string
+	ListItems     []components.Component
+	Title         string
+	TitleAsParent bool
+}
+
+func SubMenu(p SubMenuParams) components.Component {
+	cmp := components.NewComponent("li")
+
+	if p.Title != "" {
+		cmp = cmp.AddChild(createMenuTitle(p.Title, p.TitleAsParent))
+	}
+
 	return cmp.AddChild(addMenuItems(cmp, p.ListItems))
 }
 
