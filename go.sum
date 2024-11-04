@@ -8,3 +8,5 @@ github.com/nadama95/gotemplates v0.0.2 h1:t1A9ZmgeR1iK7cph4q97m9KcaFPZF7x+9J+bJF
 github.com/nadama95/gotemplates v0.0.2/go.mod h1:El8CV2+bN1NAzYrr4d3DpRVq5By9SMj5z5BQsHS8LMQ=
 github.com/nadama95/gotemplates v0.0.3 h1:IIQGcZ7TzuzW4hVoUXNmyQ9Y9WH4h+c380eULBbW1NY=
 github.com/nadama95/gotemplates v0.0.3/go.mod h1:El8CV2+bN1NAzYrr4d3DpRVq5By9SMj5z5BQsHS8LMQ=
+github.com/nadama95/gotemplates v0.0.4 h1:kN62PIVX+9aY/I8l3HLCG4R2Xz81haLsDY5qB+op6xA=
+github.com/nadama95/gotemplates v0.0.4/go.mod h1:El8CV2+bN1NAzYrr4d3DpRVq5By9SMj5z5BQsHS8LMQ=

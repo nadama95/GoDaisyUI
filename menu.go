@@ -1,8 +1,6 @@
 package godaisyui
 
 import (
-	"fmt"
-
 	"github.com/nadama95/gotemplates/components"
 )
 
@@ -16,27 +14,7 @@ type MenuParams struct {
 }
 
 func Menu(p MenuParams) components.Component {
-
-	cmp := components.NewComponent("ul").AddClass(
-		// Menu Classes
-		fmt.Sprintf("menu menu-%s menu-%s", p.Size, p.Direction),
-	).AddClass(p.Classes)
-
-	return cmp.AddChild(addMenuItems(cmp, p.ListItems))
-
-	if p.Title != "" {
-		if p.TitleAsParent {
-			section := components.NewComponent("li")
-			section = section.AddChild(createMenuTitle(p.Title, p.TitleAsParent))
-
-			return cmp.AddChild(addMenuItems(section, p.ListItems))
-
-		} else {
-			cmp = cmp.AddChild(createMenuTitle(p.Title, p.TitleAsParent))
-
-		}
-	}
-	return cmp.AddChild(addMenuItems(cmp, p.ListItems))
+	return components.NewComponent("ul")
 }
 
 type SubMenuParams struct {
