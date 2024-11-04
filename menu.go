@@ -21,6 +21,8 @@ func Menu(p MenuParams) components.Component {
 		fmt.Sprintf("menu menu-%s menu-%s", p.Size, p.Direction),
 	).AddClass(p.Classes)
 
+	return cmp
+
 	if p.Title != "" {
 		if p.TitleAsParent {
 			section := components.NewComponent("li")
