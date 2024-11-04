@@ -30,6 +30,8 @@ func Table(p TableParams) components.Component {
 		thead = thead.AddChild(r)
 	}
 
+	fmt.Println(thead.Render())
+
 	tbody := components.NewComponent("tbody")
 
 	for _, r := range p.TableBodyRows {
