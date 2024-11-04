@@ -37,6 +37,12 @@ func Menu(p MenuParams) components.Component {
 	return addMenuItems(cmp, p.ListItems)
 }
 
+func MenuItem(label, link string) components.Component {
+	return components.NewComponent("li").AddChild(
+		components.NewComponent("a").SetText(label).SetAttr("href", link),
+	)
+}
+
 type SubMenuParams struct {
 	Classes       string
 	ListItems     []components.Component
