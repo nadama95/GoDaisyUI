@@ -1,0 +1,66 @@
+package modal
+
+import (
+	"fmt"
+	"github.com/Oudwins/tailwind-merge-go/pkg/twmerge"
+	"github.com/nadama95/godaisyui/ui/actions/button"
+)
+
+const (
+	baseClass        = "modal"
+	baseActionsClass = "modal-action"
+	baseTitleClass   = "text-lg font-bold"
+)
+
+type Props struct {
+	Classes    string
+	Backdrop   bool
+	CloseCross bool
+	Placement
+	Modifier
+}
+
+func NewProps() *Props {
+	return &Props{
+		Classes:    "",
+		Backdrop:   false,
+		CloseCross: true,
+		Placement:  PlacementBottom,
+		Modifier:   ModifierDefault,
+	}
+}
+
+templ Root(id, toggleName, title string, props *Props, attrs templ.Attributes, btnProps *button.Props) {
+	@button.Root(btnProps, templ.Attributes{"onclick": fmt.Sprintf("%s.showModal()", id)}) {
+		{ toggleName }
+	}
+	<dialog id={ id } class={ twmerge.Merge(baseClass) } { attrs... }>
+		<div class={ twmerge.Merge("modal-box", props.Classes) }>
+			if props.CloseCross {
+				<form method="dialog">
+					{{ closeBtnProps := &button.Props{Classes: "absolute right-2 top-2", Style: button.StyleGhost, Modifier: button.ModifierCircle} }}
+					@button.Root(closeBtnProps, templ.Attributes{}) {
+						X 
+					}
+				</form>
+			}
+			if title != "" {
+				<h3 class={ baseTitleClass }>{ title }</h3>
+			}
+			{ children... }
+		</div>
+		if props.Backdrop {
+			<form method="dialog" class="modal-backdrop">
+				<button>Close</button>
+			</form>
+		}
+	</dialog>
+}
+
+templ Actions() {
+	<div class="modal-action">
+		<form method="dialog">
+			{ children... }
+		</form>
+	</div>
+}

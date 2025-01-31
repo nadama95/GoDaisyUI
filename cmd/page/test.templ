@@ -1,0 +1,112 @@
+package page
+
+import (
+	"github.com/nadama95/godaisyui/ui/actions/button"
+	"github.com/nadama95/godaisyui/ui/actions/dropdown"
+	"github.com/nadama95/godaisyui/ui/actions/modal"
+	"github.com/nadama95/godaisyui/ui/actions/swap"
+	"github.com/nadama95/godaisyui/ui/data_display/accordion"
+)
+
+const (
+	spacingClasses = "p-4 space-x-4"
+)
+
+templ TestPage() {
+	<html>
+		<head>
+			<link href="https://cdn.jsdelivr.net/npm/daisyui@5.0.0-beta.6/daisyui.css" rel="stylesheet" type="text/css"/>
+			<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+		</head>
+		<body>
+			<!--actions-->
+			@buttons()
+			@dropdowns()
+			@modals()
+			@swaps()
+			<!--data display-->
+			@accordions()
+		</body>
+	</html>
+}
+
+templ buttons() {
+	<!--Button-->
+	<h1>Buttons</h1>
+	<div class={ spacingClasses }>
+		{{ btnProps := button.NewProps() }}
+		@button.Root(btnProps, templ.Attributes{}) {
+			Test Button
+		}
+		{{ btnProps.Color = button.ColorSecondary }}
+		@button.Root(btnProps, templ.Attributes{}) {
+			Test Button
+		}
+	</div>
+}
+
+templ dropdowns() {
+	<!--Dropdown-->
+	<h1>Dropdown</h1>
+	<div class={ spacingClasses }>
+		@dropdown.Root("test", "Test Dropdown", dropdown.NewProps(), templ.Attributes{}, button.NewProps()) {
+			@dropdown.Item() {
+				Test01
+			}
+			@dropdown.Item() {
+				Test02
+			}
+		}
+	</div>
+}
+
+templ modals() {
+	<!--Modals-->
+	<h1>Modal</h1>
+	<div class={ spacingClasses }>
+		{{ props := modal.NewProps() }}
+		{{ btnProps := button.NewProps() }}
+		@modal.Root("testModal", "Open Modal", "Test Modal", props, templ.Attributes{}, btnProps) {
+			<p>
+				Modal Content
+			</p>
+		}
+	</div>
+}
+
+templ swaps() {
+	<!--Swaps-->
+	<h1>Swaps</h1>
+	<div class={ spacingClasses }>
+		{{ props := swap.NewProps() }}
+		{{ on := swapOn() }}
+		{{ off := swapOff() }}
+		@swap.Root(on, off, props)
+	</div>
+}
+
+templ swapOn() {
+	<p>On</p>
+}
+
+templ swapOff() {
+	<p>Off</p>
+}
+
+templ accordions() {
+	<!--Accordions-->
+	<div class={ spacingClasses }>
+		<h1>Accordions</h1>
+		{{ props := accordion.NewProps() }}
+		<div>
+			Default
+			{{ 	sections := []accordion.Section{accordion.Section{Title: "Section 1", Content: "This is section 1"}, accordion.Section{Title: "Section 2", Content: "This is section 2"}} }}
+			@accordion.Root("default", accordion.ModifierDefault, sections, props)
+		</div>
+		<div>
+			{{ props.Join = true }}
+			Arrow
+			@accordion.Root("default", accordion.ModifierArrow, sections, props)
+		</div>
+	</div>
+}

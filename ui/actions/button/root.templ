@@ -1,0 +1,34 @@
+package button
+
+import "github.com/Oudwins/tailwind-merge-go/pkg/twmerge"
+
+const baseClass = "btn"
+
+type Props struct {
+	Classes string
+	Color
+	Style
+	Behaviour
+	Size
+	Modifier
+}
+
+func NewProps() *Props {
+	return &Props{
+		Classes:   "",
+		Color:     ColorPrimary,
+		Style:     StyleDefault,
+		Behaviour: BehaviourDefault,
+		Size:      SizeMD,
+		Modifier:  ModifierDefault,
+	}
+}
+
+templ Root(props *Props, attrs templ.Attributes) {
+	<button
+		class={ twmerge.Merge(baseClass, props.Color.Class(), props.Style.Class(), props.Behaviour.Class(), props.Size.Class(), props.Modifier.Class(), props.Classes) }
+		{ attrs... }
+	>
+		{ children... }
+	</button>
+}

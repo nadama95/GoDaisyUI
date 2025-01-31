@@ -1,0 +1,35 @@
+package swap
+
+import "github.com/Oudwins/tailwind-merge-go/pkg/twmerge"
+
+const (
+	baseClass    = "swap"
+	baseOnClass  = "swap-on"
+	baseOffClass = "swap-off"
+)
+
+type Props struct {
+	Classes string
+	Modifier
+	Style
+}
+
+func NewProps() *Props {
+	return &Props{
+		Classes:  "",
+		Modifier: ModifierDefault,
+		Style:    StyleDefault,
+	}
+}
+
+templ Root(on, off templ.Component, props *Props) {
+	<label class={ twmerge.Merge(baseClass, props.Classes) }>
+		<input type="checkbox"/>
+		<div class={ baseOnClass }>
+			@on
+		</div>
+		<div class={ baseOffClass }>
+			@off
+		</div>
+	</label>
+}

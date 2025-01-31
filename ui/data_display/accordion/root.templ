@@ -1,0 +1,51 @@
+package accordion
+
+import "github.com/Oudwins/tailwind-merge-go/pkg/twmerge"
+
+const (
+	baseClass        = "collapse bg-base-100 border border-base-300"
+	baseJoinClass    = "join join-vertical bg-base-100"
+	baseTitleClass   = "collapse-title font-semibold"
+	baseContentClass = "collapse-content text-sm"
+)
+
+type Props struct {
+	Classes string
+	Join    bool
+}
+
+func NewProps() *Props {
+	return &Props{
+		Classes: "",
+		Join:    false,
+	}
+}
+
+type Section struct {
+	Title   string
+	Content string
+}
+
+templ Root(name string, modifier Modifier, sections []Section, props *Props) {
+	{{ classes := props.Classes }}
+	if props.Join {
+		{{ classes = twmerge.Merge(classes, "join-item") }}
+		<div class={ twmerge.Merge(baseJoinClass), "w-full" }>
+			for _, s := range sections {
+				@section(name, s.Title, s.Content, classes, modifier)
+			}
+		</div>
+	} else {
+		for _, s := range sections {
+			@section(name, s.Title, s.Content, classes, modifier)
+		}
+	}
+}
+
+templ section(name, title, content, classes string, modifier Modifier) {
+	<div class={ twmerge.Merge(baseClass, modifier.Class(), classes) }>
+		<input type="radio" name={ name }/>
+		<div class={ baseTitleClass }>{ title }</div>
+		<div class={ baseContentClass }>{ content }</div>
+	</div>
+}
