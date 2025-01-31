@@ -6,6 +6,7 @@ import (
 	"github.com/nadama95/godaisyui/ui/actions/modal"
 	"github.com/nadama95/godaisyui/ui/actions/swap"
 	"github.com/nadama95/godaisyui/ui/data_display/accordion"
+	"github.com/nadama95/godaisyui/ui/data_display/card"
 )
 
 const (
@@ -26,6 +27,7 @@ templ TestPage() {
 			@swaps()
 			<!--data display-->
 			@accordions()
+			@cards()
 		</body>
 	</html>
 }
@@ -109,4 +111,26 @@ templ accordions() {
 			@accordion.Root("default", accordion.ModifierArrow, sections, props)
 		</div>
 	</div>
+}
+
+templ cards() {
+	<!--Cards-->
+	<div class={ spacingClasses }>
+		<h1>Cards</h1>
+		@card.Root("Card", empty(), card.NewProps(), templ.Attributes{}) {
+			<p>Card Content</p>
+		}
+		@card.Root("Card", cardActions(), card.NewProps(), templ.Attributes{}) {
+			<p>Card Content</p>
+		}
+	</div>
+}
+
+templ empty() {
+}
+
+templ cardActions() {
+	@button.Root(button.NewProps(), templ.Attributes{}) {
+		Card Button 
+	}
 }

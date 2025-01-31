@@ -1,0 +1,40 @@
+package card
+
+import "github.com/Oudwins/tailwind-merge-go/pkg/twmerge"
+
+const (
+	baseClass        = "card bg-base-100 shadow-sm"
+	baseBodyClass    = "card-body"
+	baseTitleClass   = "card-title"
+	baseActionsClass = "card-actions justify-end"
+)
+
+type Props struct {
+	Classes string
+	Modifier
+	Size
+	Style
+}
+
+func NewProps() *Props {
+	return &Props{
+		Classes:  "",
+		Modifier: ModifierDefault,
+		Size:     SizeMD,
+		Style:    StyleDefault,
+	}
+}
+
+templ Root(title string, actions templ.Component, props *Props, attrs templ.Attributes) {
+	<div class={ twmerge.Merge(baseClass, props.Classes) } { attrs... }>
+		<div class={ baseBodyClass }>
+			if title != "" {
+				<h2 class={ baseTitleClass }>{ title }</h2>
+			}
+			{ children... }
+			<div class={ baseActionsClass }>
+				@actions
+			</div>
+		</div>
+	</div>
+}
