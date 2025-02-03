@@ -21,11 +21,11 @@ func NewProps() *Props {
 	}
 }
 
-templ Root(p *Props) {
+templ Root(p *Props, attrs templ.Attributes) {
 	<div class={ twmerge.Merge(baseContainerClass, p.Classes) }>
-		<div class={ twmerge.Merge(baseTableClass, p.Modifier.Class(), p.Size.Class()) }>
+		<table class={ twmerge.Merge(baseTableClass, p.Modifier.Class(), p.Size.Class()) } { attrs... }>
 			{ children... }
-		</div>
+		</table>
 	</div>
 }
 
