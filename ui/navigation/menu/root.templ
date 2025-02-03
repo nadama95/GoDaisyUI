@@ -3,7 +3,7 @@ package menu
 import "github.com/Oudwins/tailwind-merge-go/pkg/twmerge"
 
 const (
-	baseClass = "menu bg-base-200 rounded-box"
+	baseClass = "menu"
 )
 
 type Props struct {
@@ -24,7 +24,7 @@ func (p *Props) class() string {
 
 func NewProps() *Props {
 	return &Props{
-		Classes:   "",
+		Classes:   "bg-base-200 rounded-box",
 		Modifier:  ModifierDefault,
 		Size:      SizeMD,
 		Direction: DirectionVertical,
