@@ -1,0 +1,61 @@
+package menu
+
+import "github.com/Oudwins/tailwind-merge-go/pkg/twmerge"
+
+const (
+	baseClass = "menu bg-base-200 rounded-box"
+)
+
+type Props struct {
+	Classes string
+	Modifier
+	Size
+	Direction
+}
+
+func (p *Props) class() string {
+	return twmerge.Merge(
+		p.Modifier.Class(),
+		p.Size.Class(),
+		p.Direction.Class(),
+		p.Classes,
+	)
+}
+
+func NewProps() *Props {
+	return &Props{
+		Classes:   "",
+		Modifier:  ModifierDefault,
+		Size:      SizeMD,
+		Direction: DirectionVertical,
+	}
+}
+
+templ Root(p *Props, attrs templ.Attributes) {
+	<ul class={ twmerge.Merge(baseClass, p.class()) } { attrs... }>
+		{ children... }
+	</ul>
+}
+
+templ Submenu(toggle string) {
+	if toggle != "" {
+		<details>
+			<summary>{ toggle }</summary>
+			<ul>
+				{ children... }
+			</ul>
+		</details>
+	} else {
+		<ul>
+			{ children... }
+		</ul>
+	}
+}
+
+templ Item() {
+	<li>
+		<a>
+			{ children... }
+		</a>
+	</li>
+}

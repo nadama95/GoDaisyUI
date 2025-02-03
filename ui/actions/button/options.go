@@ -96,9 +96,9 @@ func (s Size) Class() string {
 		return "btn-lg"
 	case SizeXL:
 		return "btn-xl"
+	default:
+		return ""
 	}
-
-	return ""
 }
 
 type Modifier int

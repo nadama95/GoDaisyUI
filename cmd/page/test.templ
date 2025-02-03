@@ -8,6 +8,7 @@ import (
 	"github.com/nadama95/godaisyui/ui/data_display/accordion"
 	"github.com/nadama95/godaisyui/ui/data_display/card"
 	"github.com/nadama95/godaisyui/ui/data_display/stat"
+	"github.com/nadama95/godaisyui/ui/navigation/menu"
 )
 
 const (
@@ -20,7 +21,7 @@ templ TestPage() {
 			<link href="https://cdn.jsdelivr.net/npm/daisyui@5.0.0-beta.6/daisyui.css" rel="stylesheet" type="text/css"/>
 			<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 		</head>
-		<body>
+		<body class="bg-base-100">
 			<!--actions-->
 			@buttons()
 			@dropdowns()
@@ -30,6 +31,8 @@ templ TestPage() {
 			@accordions()
 			@cards()
 			@stats()
+			<!--Navigation-->
+			@menus()
 		</body>
 	</html>
 }
@@ -146,5 +149,38 @@ templ stats() {
 		{{ props := stat.NewProps() }}
 		{{ props.AsChild = true }}
 		@stat.Root(stats, props, templ.Attributes{})
+	</div>
+}
+
+templ menus() {
+	<!--Menus-->
+	<div class={ spacingClasses }>
+		<h1>Menus</h1>
+		@menu.Root(menu.NewProps(), templ.Attributes{}) {
+			@menu.Item() {
+				Test01
+			}
+			@menu.Item() {
+				Test02
+			}
+		}
+		@menu.Root(menu.NewProps(), templ.Attributes{}) {
+			@menu.Submenu("") {
+				@menu.Item() {
+					Top 01 
+				}
+				@menu.Item() {
+					Top 02 
+				}
+			}
+			@menu.Submenu("Collapse") {
+				@menu.Item() {
+					Child 01
+				}
+				@menu.Item() {
+					Child 02
+				}
+			}
+		}
 	</div>
 }
