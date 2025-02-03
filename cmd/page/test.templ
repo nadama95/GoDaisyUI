@@ -157,27 +157,27 @@ templ menus() {
 	<div class={ spacingClasses }>
 		<h1>Menus</h1>
 		@menu.Root(menu.NewProps(), templ.Attributes{}) {
-			@menu.Item() {
+			@menu.Item(templ.Attributes{}) {
 				Test01
 			}
-			@menu.Item() {
+			@menu.Item(templ.Attributes{}) {
 				Test02
 			}
 		}
 		@menu.Root(menu.NewProps(), templ.Attributes{}) {
 			@menu.Submenu("") {
-				@menu.Item() {
+				@menu.Item(templ.Attributes{}) {
 					Top 01 
 				}
-				@menu.Item() {
+				@menu.Item(templ.Attributes{}) {
 					Top 02 
 				}
 			}
 			@menu.Submenu("Collapse") {
-				@menu.Item() {
+				@menu.Item(templ.Attributes{}) {
 					Child 01
 				}
-				@menu.Item() {
+				@menu.Item(templ.Attributes{}) {
 					Child 02
 				}
 			}

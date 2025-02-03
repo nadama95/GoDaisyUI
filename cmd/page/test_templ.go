@@ -909,7 +909,7 @@ func menus() templ.Component {
 				}
 				return nil
 			})
-			templ_7745c5c3_Err = menu.Item().Render(templ.WithChildren(ctx, templ_7745c5c3_Var40), templ_7745c5c3_Buffer)
+			templ_7745c5c3_Err = menu.Item(templ.Attributes{}).Render(templ.WithChildren(ctx, templ_7745c5c3_Var40), templ_7745c5c3_Buffer)
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
@@ -935,7 +935,7 @@ func menus() templ.Component {
 				}
 				return nil
 			})
-			templ_7745c5c3_Err = menu.Item().Render(templ.WithChildren(ctx, templ_7745c5c3_Var41), templ_7745c5c3_Buffer)
+			templ_7745c5c3_Err = menu.Item(templ.Attributes{}).Render(templ.WithChildren(ctx, templ_7745c5c3_Var41), templ_7745c5c3_Buffer)
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
@@ -987,7 +987,7 @@ func menus() templ.Component {
 					}
 					return nil
 				})
-				templ_7745c5c3_Err = menu.Item().Render(templ.WithChildren(ctx, templ_7745c5c3_Var44), templ_7745c5c3_Buffer)
+				templ_7745c5c3_Err = menu.Item(templ.Attributes{}).Render(templ.WithChildren(ctx, templ_7745c5c3_Var44), templ_7745c5c3_Buffer)
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
@@ -1013,7 +1013,7 @@ func menus() templ.Component {
 					}
 					return nil
 				})
-				templ_7745c5c3_Err = menu.Item().Render(templ.WithChildren(ctx, templ_7745c5c3_Var45), templ_7745c5c3_Buffer)
+				templ_7745c5c3_Err = menu.Item(templ.Attributes{}).Render(templ.WithChildren(ctx, templ_7745c5c3_Var45), templ_7745c5c3_Buffer)
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
@@ -1057,7 +1057,7 @@ func menus() templ.Component {
 					}
 					return nil
 				})
-				templ_7745c5c3_Err = menu.Item().Render(templ.WithChildren(ctx, templ_7745c5c3_Var47), templ_7745c5c3_Buffer)
+				templ_7745c5c3_Err = menu.Item(templ.Attributes{}).Render(templ.WithChildren(ctx, templ_7745c5c3_Var47), templ_7745c5c3_Buffer)
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
@@ -1083,7 +1083,7 @@ func menus() templ.Component {
 					}
 					return nil
 				})
-				templ_7745c5c3_Err = menu.Item().Render(templ.WithChildren(ctx, templ_7745c5c3_Var48), templ_7745c5c3_Buffer)
+				templ_7745c5c3_Err = menu.Item(templ.Attributes{}).Render(templ.WithChildren(ctx, templ_7745c5c3_Var48), templ_7745c5c3_Buffer)
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}

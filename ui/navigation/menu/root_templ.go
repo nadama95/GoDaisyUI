@@ -11,7 +11,7 @@ import templruntime "github.com/a-h/templ/runtime"
 import "github.com/Oudwins/tailwind-merge-go/pkg/twmerge"
 
 const (
-	baseClass = "menu bg-base-200 rounded-box"
+	baseClass = "menu"
 )
 
 type Props struct {
@@ -32,7 +32,7 @@ func (p *Props) class() string {
 
 func NewProps() *Props {
 	return &Props{
-		Classes:   "",
+		Classes:   "bg-base-200 rounded-box",
 		Modifier:  ModifierDefault,
 		Size:      SizeMD,
 		Direction: DirectionVertical,
@@ -124,7 +124,7 @@ func Submenu(toggle string) templ.Component {
 		}
 		ctx = templ.ClearChildren(ctx)
 		if toggle != "" {
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 5, "<details open><summary>")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 5, "<details><summary>")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
@@ -167,7 +167,7 @@ func Submenu(toggle string) templ.Component {
 	})
 }
 
-func Item() templ.Component {
+func Item(attrs templ.Attributes) templ.Component {
 	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
 		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
@@ -188,7 +188,15 @@ func Item() templ.Component {
 			templ_7745c5c3_Var6 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 10, "<li><a>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 10, "<li><a")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templ.RenderAttributes(ctx, templ_7745c5c3_Buffer, attrs)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 11, ">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -196,7 +204,7 @@ func Item() templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 11, "</a></li>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 12, "</a></li>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
