@@ -7,6 +7,7 @@ import (
 	"github.com/nadama95/godaisyui/ui/actions/swap"
 	"github.com/nadama95/godaisyui/ui/data_display/accordion"
 	"github.com/nadama95/godaisyui/ui/data_display/card"
+	"github.com/nadama95/godaisyui/ui/data_display/stat"
 )
 
 const (
@@ -28,6 +29,7 @@ templ TestPage() {
 			<!--data display-->
 			@accordions()
 			@cards()
+			@stats()
 		</body>
 	</html>
 }
@@ -133,4 +135,13 @@ templ cardActions() {
 	@button.Root(button.NewProps(), templ.Attributes{}) {
 		Card Button 
 	}
+}
+
+templ stats() {
+	<!--Stats-->
+	<div class={ spacingClasses }>
+		<h1>Stats</h1>
+		{{ stats := []templ.Component{stat.Stat("Test", "Test Stat", stat.Value("001"))} }}
+		@stat.Root(stats, stat.NewProps(), templ.Attributes{})
+	</div>
 }

@@ -1,6 +1,7 @@
 package main
 
 import (
+	"log"
 	"net/http"
 
 	"github.com/a-h/templ"
@@ -11,5 +12,5 @@ func main() {
 
 	http.Handle("/", templ.Handler(page.TestPage()))
 
-	http.ListenAndServe(":3000", nil)
+	log.Fatal(http.ListenAndServe(":3000", nil))
 }

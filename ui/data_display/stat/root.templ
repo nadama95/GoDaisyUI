@@ -1,0 +1,60 @@
+package stat
+
+import "github.com/Oudwins/tailwind-merge-go/pkg/twmerge"
+
+const (
+	baseClass                = "stats shadow"
+	baseStatClass            = "stat"
+	baseStatTitleClass       = "stat-title"
+	baseStatFigureClass      = "stat-figure"
+	baseStatValueClass       = "stat-value"
+	baseStatDescriptionClass = "stat-desc"
+)
+
+type Props struct {
+	Classes string
+	Direction
+}
+
+func NewProps() *Props {
+	return &Props{
+		Classes:   "",
+		Direction: DirectionHorizontal,
+	}
+}
+
+templ Root(stats []templ.Component, p *Props, attrs templ.Attributes) {
+	<div class={ twmerge.Merge(baseClass, p.Direction.Class(), p.Classes) } { attrs... }>
+		for _, s := range stats {
+			@s
+		}
+	</div>
+}
+
+templ Stat(title, description string, value templ.Component) {
+	<div class={ baseStatClass }>
+		if title != "" {
+			<div class={ baseStatTitleClass }>
+				{ title }
+			</div>
+		}
+		@value
+		if description != "" {
+			<div class={ baseStatDescriptionClass }>
+				{ description }
+			</div>
+		}
+	</div>
+}
+
+templ Figure(attrs templ.Attributes) {
+	<div class={ baseStatFigureClass } { attrs... }>
+		{ children... }
+	</div>
+}
+
+templ Value(value string) {
+	<div class={ baseStatValueClass }>
+		{ value }
+	</div>
+}
