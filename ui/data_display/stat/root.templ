@@ -3,7 +3,7 @@ package stat
 import "github.com/Oudwins/tailwind-merge-go/pkg/twmerge"
 
 const (
-	baseClass                = "stats shadow"
+	baseClass                = "stats"
 	baseStatClass            = "stat"
 	baseStatTitleClass       = "stat-title"
 	baseStatFigureClass      = "stat-figure"
@@ -20,13 +20,17 @@ type Props struct {
 func NewProps() *Props {
 	return &Props{
 		Classes:   "",
-		AsChild: false,
+		AsChild:   false,
 		Direction: DirectionHorizontal,
 	}
 }
 
 templ Root(stats []templ.Component, p *Props, attrs templ.Attributes) {
-	<div class={ twmerge.Merge(baseClass, p.Direction.Class(), p.Classes) } { attrs... }>
+	{{ shadowClass := "shadow" }}
+	if p.AsChild {
+		{{ shadowClass = "" }}
+	}
+	<div class={ twmerge.Merge(baseClass, shadowClass, p.Direction.Class(), p.Classes) } { attrs... }>
 		for _, s := range stats {
 			@s
 		}

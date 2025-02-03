@@ -143,5 +143,8 @@ templ stats() {
 		<h1>Stats</h1>
 		{{ stats := []templ.Component{stat.Stat("Test", "Test Stat", stat.Value("001"))} }}
 		@stat.Root(stats, stat.NewProps(), templ.Attributes{})
+		{{ props := stat.NewProps() }}
+		{{ props.AsChild = true }}
+		@stat.Root(stats, props, templ.Attributes{})
 	</div>
 }

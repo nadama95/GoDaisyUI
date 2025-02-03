@@ -11,7 +11,7 @@ import templruntime "github.com/a-h/templ/runtime"
 import "github.com/Oudwins/tailwind-merge-go/pkg/twmerge"
 
 const (
-	baseClass                = "stats shadow"
+	baseClass                = "stats"
 	baseStatClass            = "stat"
 	baseStatTitleClass       = "stat-title"
 	baseStatFigureClass      = "stat-figure"
@@ -21,12 +21,14 @@ const (
 
 type Props struct {
 	Classes string
+	AsChild bool
 	Direction
 }
 
 func NewProps() *Props {
 	return &Props{
 		Classes:   "",
+		AsChild:   false,
 		Direction: DirectionHorizontal,
 	}
 }
@@ -52,7 +54,11 @@ func Root(stats []templ.Component, p *Props, attrs templ.Attributes) templ.Compo
 			templ_7745c5c3_Var1 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		var templ_7745c5c3_Var2 = []any{twmerge.Merge(baseClass, p.Direction.Class(), p.Classes)}
+		shadowClass := "shadow"
+		if p.AsChild {
+			shadowClass = ""
+		}
+		var templ_7745c5c3_Var2 = []any{twmerge.Merge(baseClass, shadowClass, p.Direction.Class(), p.Classes)}
 		templ_7745c5c3_Err = templ.RenderCSSItems(ctx, templ_7745c5c3_Buffer, templ_7745c5c3_Var2...)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
@@ -165,7 +171,7 @@ func Stat(title, description string, value templ.Component) templ.Component {
 			var templ_7745c5c3_Var9 string
 			templ_7745c5c3_Var9, templ_7745c5c3_Err = templ.JoinStringErrs(title)
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `ui/data_display/stat/root.templ`, Line: 38, Col: 11}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `ui/data_display/stat/root.templ`, Line: 44, Col: 11}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var9))
 			if templ_7745c5c3_Err != nil {
@@ -206,7 +212,7 @@ func Stat(title, description string, value templ.Component) templ.Component {
 			var templ_7745c5c3_Var12 string
 			templ_7745c5c3_Var12, templ_7745c5c3_Err = templ.JoinStringErrs(description)
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `ui/data_display/stat/root.templ`, Line: 44, Col: 17}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `ui/data_display/stat/root.templ`, Line: 50, Col: 17}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var12))
 			if templ_7745c5c3_Err != nil {
@@ -334,7 +340,7 @@ func Value(value string) templ.Component {
 		var templ_7745c5c3_Var19 string
 		templ_7745c5c3_Var19, templ_7745c5c3_Err = templ.JoinStringErrs(value)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `ui/data_display/stat/root.templ`, Line: 58, Col: 9}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `ui/data_display/stat/root.templ`, Line: 64, Col: 9}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var19))
 		if templ_7745c5c3_Err != nil {
