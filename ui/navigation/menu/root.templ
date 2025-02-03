@@ -52,9 +52,9 @@ templ Submenu(toggle string) {
 	}
 }
 
-templ Item() {
+templ Item(attrs templ.Attributes) {
 	<li>
-		<a>
+		<a { attrs... }>
 			{ children... }
 		</a>
 	</li>
