@@ -1,0 +1,54 @@
+package pagination
+
+import "github.com/Oudwins/tailwind-merge-go/pkg/twmerge"
+
+const (
+	baseButtonClass = "join-item btn"
+)
+
+type Props struct {
+	Classes string
+	Size
+}
+
+func NewProps() *Props {
+	return &Props{
+		Classes: "",
+		Size:    SizeMD,
+	}
+}
+
+type Button struct {
+	Value    string
+	Active   bool
+	Disabled bool
+}
+
+func (b *Button) class() string {
+	classes := ""
+	if b.Active {
+		classes += "btn-active"
+	}
+
+	if b.Disabled {
+		classes += "btn-disabled"
+	}
+
+	return twmerge.Merge(baseButtonClass, classes)
+}
+
+func NewButton(value string) *Button {
+	return &Button{
+		Value:    value,
+		Active:   false,
+		Disabled: false,
+	}
+}
+
+templ Root(btns []*Button, p *Props, attrs templ.Attributes) {
+	<div class="join" { attrs... }>
+		for _, btn := range btns {
+			<button class={ twmerge.Merge(btn.class(), p.Size.Class()) }>{ btn.Value }</button>
+		}
+	</div>
+}

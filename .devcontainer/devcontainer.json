@@ -16,6 +16,7 @@
     "vscode": {
       "settings": {},
       "extensions": [
+        "a-h.templ",
         "bradlc.vscode-tailwindcss",
         "esbenp.prettier-vscode",
         "golang.Go"
