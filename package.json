@@ -2,6 +2,7 @@
   "name": "godaisyui",
   "packageManager": "yarn@4.7.0",
   "scripts": {
+    "build": "npx @tailwindcss/cli -i ./src/input.css -o ./static/css/godaisyui.css --minify",
     "dev": "npx @tailwindcss/cli -i ./src/input.css -o ./static/css/godaisyui.css --watch"
   },
   "dependencies": {
