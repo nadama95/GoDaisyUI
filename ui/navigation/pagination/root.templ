@@ -19,6 +19,7 @@ func NewProps() *Props {
 }
 
 type Button struct {
+	Attrs    templ.Attributes
 	Value    string
 	Active   bool
 	Disabled bool
@@ -48,7 +49,7 @@ func NewButton(value string) *Button {
 templ Root(btns []*Button, p *Props, attrs templ.Attributes) {
 	<div class="join" { attrs... }>
 		for _, btn := range btns {
-			<button class={ twmerge.Merge(btn.class(), p.Size.Class()) }>{ btn.Value }</button>
+			<button class={ twmerge.Merge(btn.class(), p.Size.Class()) } { btn.Attrs... }>{ btn.Value }</button>
 		}
 	</div>
 }
